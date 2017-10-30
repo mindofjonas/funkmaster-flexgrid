@@ -1,0 +1,99 @@
+.#{$fm-prefix}row,
+.#{$fm-prefix}col {
+  box-sizing: border-box;
+}
+
+.#{$fm-prefix}row {
+  display: flex;
+  flex-wrap: wrap;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  &--top {
+    align-items: flex-start;
+  }
+  &--bottom {
+    align-items: flex-end;
+  }
+  &--center {
+    align-items: center;
+  }
+  &--justify-start {
+    justify-content: flex-start;
+  }
+  &--justify-end {
+    justify-content: flex-end;
+  }
+  &--justify-between {
+    justify-content: space-between;
+  }
+  &--justify-around {
+    justify-content: space-around;
+  }
+  &--justify-evenly {
+    justify-content: space-evenly;
+  }
+  &--justify-center {
+    justify-content: center;
+  }
+  &--gutter {
+    margin: 0 (-$fm_gutter_width / 2) 0 (-$fm_gutter_width / 2);
+  }
+  &--gutter {
+    >.#{$fm-prefix}col,
+    >[class*="#{$fm-prefix}col"] {
+      padding: 0 ($fm_gutter_width / 2) 0 ($fm_gutter_width / 2);
+    }
+  }
+  &--flex-cols {
+    >.#{$fm-prefix}col,
+    >[class*="#{$fm-prefix}col"] {
+      display: flex;
+    }
+  }
+  &--full-cols>.#{$fm-prefix}col {
+    flex: 0 0 100%;
+  }
+  &--half-cols>.#{$fm-prefix}col {
+    flex: 0 0 50%;
+  }
+  &--third-cols>.#{$fm-prefix}col {
+    flex: 0 0 100% / 3;
+  }
+  &--quarter-cols>.#{$fm-prefix}col {
+    flex: 0 0 25%;
+  }
+}
+
+.#{$fm-prefix}col {
+  max-width: 100%;
+  width: 100%;
+  min-height: 1px;
+  position: relative;
+  &--top {
+    align-self: flex-start;
+  }
+  &--bottom {
+    align-self: flex-end;
+  }
+  &--center {
+    align-self: center;
+  }
+  &--auto {
+    flex: none;
+  }
+}
+
+@for $i from 1 through $fm_col_number {
+  .#{$fm-prefix}col--#{$i} {
+    flex: 0 0 (100% / $i);
+  }
+  @each $bp,
+  $size in $fm_bp {
+    @include mq($bp) {
+      .#{$fm-prefix}col--#{$bp}-#{$i} {
+        flex: 0 0 (100% / $i);
+      }
+    }
+  }
+}

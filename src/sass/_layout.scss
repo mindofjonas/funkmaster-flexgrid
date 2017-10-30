@@ -1,0 +1,51 @@
+/*  Start new grid styles */
+
+.grid-container {
+  margin: auto;
+  &.grid-align-left {
+    margin-left: 0;
+  }
+  &.limit_width-9>div {
+    max-width: 53.2rem;
+  }
+  &.limit_width-8>div {
+    max-width: 47rem;
+  }
+  &.centered-content>div {
+    justify-content: center;
+  }
+}
+
+// basic grid pattern
+@for $i from 1 through $grid_columns {
+  .max_width-#{$i} {
+    max-width: ((($i * $grid_column_width) + ( ($i - 1) * $grid_gutter)) / 16) + 0rem;
+  }
+}
+
+// item-spans, desktop only
+@include media("desktop") {
+  .item-span-wrap>* {
+    display: flex;
+    flex-wrap: wrap;
+    margin-right: -$gutter_desktop / 2;
+    margin-left: -$gutter_desktop / 2;
+    @media (min-width: 768px) and (max-width: 1023px) {
+      margin-left: -$gutter_mobile / 2;
+      margin-right: -$gutter_mobile / 2;
+    }
+    >.grid-column {
+      padding-left: $gutter_desktop / 2;
+      padding-right: $gutter_desktop / 2;
+      @media (min-width: 768px) and (max-width: 1023px) {
+        padding-left: $gutter_mobile / 2;
+        padding-right: $gutter_mobile / 2;
+      }
+    }
+  }
+  @for $i from 1 through $grid_columns {
+    .span-items-#{$i}>*>.grid-column {
+      flex: 0 0 (100% / $i);
+    }
+  }
+}

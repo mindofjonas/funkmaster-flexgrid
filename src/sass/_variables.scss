@@ -1,0 +1,15 @@
+$fm_prefix: 'fm-';
+
+$fm_col_number: 12;
+$fm_browser_context: 16;
+$fm_bp_sm: 320px;
+$fm_bp_md: 768px;
+$fm_bp_lg: 1024px;
+$fm_bp_xl: 1300px;
+$fm_bp: (
+  sm: $fm_bp_sm,
+  md: $fm_bp_md,
+  lg: $fm_bp_lg,
+  xl: $fm_bp_xl
+);
+$fm_gutter_width: 30px;
